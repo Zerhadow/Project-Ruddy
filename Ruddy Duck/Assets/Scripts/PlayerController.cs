@@ -19,14 +19,12 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInputActions playerControls;
     private PlayerInput playerInput;
-    Vector2 moveDirection = Vector2.zero;
-    Vector2 lookDirection = new Vector2(1,0);
-    public Vector2 MoveInput { get; private set; } = Vector3.zero;
-    public Vector2 LookInput { get; private set; } = Vector2.zero;
+    Vector3 lookDirection = new Vector3(1,0,0);
+    public Vector2 MoveInput { get; private set; } = Vector2.zero;
 
     #region #Input Actions
     private InputAction move;
-    // private InputAction fire;
+    private InputAction fire;
     // private InputAction melee;
     // private InputAction pause;
     // private InputAction talk;
@@ -55,9 +53,9 @@ public class PlayerController : MonoBehaviour
         playerControls.Player.Move.performed += setMove;
         playerControls.Player.Move.canceled += setMove;
 
-        // fire = playerControls.Player.Fire;
-        // fire.Enable();
-        // fire.performed += Fire;
+        fire = playerControls.Player.Fire;
+        fire.Enable();
+        fire.performed += Fire;
 
         // melee = playerControls.Player.Melee;
         // melee.Enable();
@@ -72,7 +70,7 @@ public class PlayerController : MonoBehaviour
         playerControls.Player.Move.performed -= setMove;
         playerControls.Player.Move.canceled -= setMove;
         
-        // fire.Disable();
+        fire.Disable();
         // melee.Disable();
         // pause.Disable();
     }
@@ -81,6 +79,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+
+        if (MoveInput != Vector2.zero) {
+            lookDirection = rb.velocity;
+            lookDirection.Normalize();
+        }
+
     }
 
     void FixedUpdate() {
@@ -95,5 +99,25 @@ public class PlayerController : MonoBehaviour
         if (canMove) {
             rb.velocity = new Vector3(MoveInput.x * moveSpeed, 0, MoveInput.y * moveSpeed);
         }
+    }
+
+    private void Fire(InputAction.CallbackContext context) {
+        if (canFire) {
+            Debug.Log("Fire");
+            StartCoroutine(FireCooldown(fireCooldown));
+            GameObject projectileObj = Instantiate(projectilePrefab, rb.position, Quaternion.identity); //may need to change to rb.position
+            Projectile projectile = projectileObj.GetComponent<Projectile>();
+            projectile.Launch(lookDirection, 300);
+            //particles
+        }
+    }
+
+    IEnumerator FireCooldown(float timer) {
+        canFire = false;
+        while(timer > 0) {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        canFire = true;
     }
 }
