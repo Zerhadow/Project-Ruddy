@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     Vector2 moveDirection = Vector2.zero;
     Vector2 lookDirection = new Vector2(1,0);
+    public Vector2 MoveInput { get; private set; } = Vector3.zero;
+    public Vector2 LookInput { get; private set; } = Vector2.zero;
 
     #region #Input Actions
     private InputAction move;
@@ -50,7 +52,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnEnable() {
-        playerControls.Player.Move.performed += Move;
+        playerControls.Player.Move.performed += setMove;
+        playerControls.Player.Move.canceled += setMove;
 
         // fire = playerControls.Player.Fire;
         // fire.Enable();
@@ -66,7 +69,9 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnDisable() {
-        move.Disable();
+        playerControls.Player.Move.performed -= setMove;
+        playerControls.Player.Move.canceled -= setMove;
+        
         // fire.Disable();
         // melee.Disable();
         // pause.Disable();
@@ -76,22 +81,19 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
-
     }
 
     void FixedUpdate() {
         
     }
 
-    private void Move(InputAction.CallbackContext context) {
-        move = context.ReadValue<Vector2>();
+    void setMove(InputAction.CallbackContext context) {
+        MoveInput = context.ReadValue<Vector2>();
     }
 
     void Move() {
         if (canMove) {
-            Debug.Log(context);
-            Vector2 inputVector = context.ReadValue<Vector2>();
-            rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * moveSpeed, ForceMode.Force);
+            rb.velocity = new Vector3(MoveInput.x * moveSpeed, 0, MoveInput.y * moveSpeed);
         }
     }
 }
