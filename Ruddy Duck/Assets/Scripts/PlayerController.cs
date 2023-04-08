@@ -1,99 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rb;
+    [Header("Movement")]
+    public float speed = 6f;
+    public float rotateSpeed = 15f;
 
-    #region Stats & Cooldowns
-    public int ATK;
-    public float moveSpeed = 5f;
-    public float fireCooldown = 0.3f;
-    public float meleeRange = 0.5f;
-    #endregion
+    public float groundDrag;
 
-    bool canFire = true, canMove = true, evaded = false;
-    bool blocked = false;
+    [Header("Ground Check")]
+    public float playerHeight = 1.8f;
+    public LayerMask groundLayer;
+    bool grounded;
+    
+    public Transform orientation;
 
-    public PlayerInputActions playerControls;
-    private PlayerInput playerInput;
-    Vector2 moveDirection = Vector2.zero;
-    Vector2 lookDirection = new Vector2(1,0);
-    public Vector2 MoveInput { get; private set; } = Vector3.zero;
-    public Vector2 LookInput { get; private set; } = Vector2.zero;
+    float horizontalInput;
+    float verticalInput;
 
-    #region #Input Actions
-    private InputAction move;
-    // private InputAction fire;
-    // private InputAction melee;
-    // private InputAction pause;
-    // private InputAction talk;
-    #endregion
+    Vector3 moveDirection;
 
-    public GameObject projectilePrefab;
-    public Transform atkPt;
+    Rigidbody rb;
 
-    void Awake() {
-        playerControls = new PlayerInputActions();
-        playerInput = GetComponent<PlayerInput>();
-        playerControls.Player.Enable();
+    private KeyCode UnitList = KeyCode.Tab;
+
+    private void Start() {
         rb = GetComponent<Rigidbody>();
-
-        // dmg = ATK;
-    }
-
-    // Start is called before the first frame update
-    void Start() {
-        // currHP = maxHP;
-        // // Debug.Log("currHP: " + currHP);        
-        // HPBar.SetMaxHealth(maxHP);
-    }
-
-    private void OnEnable() {
-        playerControls.Player.Move.performed += setMove;
-        playerControls.Player.Move.canceled += setMove;
-
-        // fire = playerControls.Player.Fire;
-        // fire.Enable();
-        // fire.performed += Fire;
-
-        // melee = playerControls.Player.Melee;
-        // melee.Enable();
-        // melee.performed += Melee;
-
-        // pause = playerControls.Player.Pause;
-        // pause.Enable();
-        // pause.performed += Pause;
-    }
-
-    private void OnDisable() {
-        playerControls.Player.Move.performed -= setMove;
-        playerControls.Player.Move.canceled -= setMove;
-        
-        // fire.Disable();
-        // melee.Disable();
-        // pause.Disable();
+        // rb.freezeRotation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+
+        MyInput();
+
+        //handle drag
+        if (grounded) {
+            rb.drag = groundDrag;
+        } else {
+            rb.drag = 0f;
+        }
+
+    }
+
+    private void FixedUpdate() {
         Move();
+
+        if(Input.GetKeyDown(UnitList)) {
+            Debug.Log("Unit List");
+        }
     }
 
-    void FixedUpdate() {
-        
+    private void MyInput() {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
     }
 
-    void setMove(InputAction.CallbackContext context) {
-        MoveInput = context.ReadValue<Vector2>();
+    private void Move() {
+        moveDirection = (orientation.forward * verticalInput) + (orientation.right * horizontalInput);
+        rb.velocity = moveDirection * speed;
+        transform.Rotate(0f, horizontalInput * rotateSpeed * Time.deltaTime, 0f);
     }
 
-    void Move() {
-        if (canMove) {
-            rb.velocity = new Vector3(MoveInput.x * moveSpeed, 0, MoveInput.y * moveSpeed);
+    private void SpeedControl() {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        //limit velocity if needed
+        if (flatVel.magnitude > speed) {
+            rb.velocity = flatVel.normalized * speed + new Vector3(0f, rb.velocity.y, 0f);
         }
     }
 }
