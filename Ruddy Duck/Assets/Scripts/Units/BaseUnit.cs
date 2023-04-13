@@ -10,6 +10,17 @@ public class BaseUnit : MonoBehaviour
     public double Attack;
     public double Defense;
     public double Speed;
+    public string  skill;
 
     // public HUDHealth HPBar;
+
+    void createUnit(string name, double hp, double attack, double defense, double speed, string skill) {
+        unitName = name;
+        maxHP = hp;
+        currentHP = hp;
+        Attack = attack;
+        Defense = defense;
+        Speed = speed;
+        this.skill = skill;
+    }
 }
