@@ -23,6 +23,8 @@ public class TrainUnits : MonoBehaviour
     public TMP_Text unit1GoldCost;
     public TMP_Text unit2GoldCost;
     public TMP_Text unit3GoldCost;
+    public GameObject statSummaryObj;
+    public TMP_Text statSummaryText;
     #endregion
 
     enum UnitType {
@@ -49,6 +51,7 @@ public class TrainUnits : MonoBehaviour
         unit1GoldCost.text = unit1.goldCost.ToString();
         unit2GoldCost.text = unit2.goldCost.ToString();
         unit3GoldCost.text = unit3.goldCost.ToString();
+        statSummaryObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -76,6 +79,7 @@ public class TrainUnits : MonoBehaviour
             unitsPannelObj.SetActive(false);
             trainStatPannelObj.SetActive(true);
             selectedUnitType = UnitType.Unit1;
+
         }
     }
 
@@ -115,6 +119,10 @@ public class TrainUnits : MonoBehaviour
                 unit3.IncreaseHP();
                 break;
         }
+
+        statSummaryText.text = "HP increased by 10";
+        statSummaryObj.SetActive(true);
+        StartCoroutine(Wait());
     }
 
     public void TrainATK() {
@@ -132,6 +140,10 @@ public class TrainUnits : MonoBehaviour
                 unit3.IncreaseAttack();
                 break;
         }
+
+        statSummaryText.text = "Attack increased by 1";
+        statSummaryObj.SetActive(true);
+        StartCoroutine(Wait());
     }
 
     public void TrainDEF() {
@@ -149,6 +161,11 @@ public class TrainUnits : MonoBehaviour
                 unit3.IncreaseDefense();
                 break;
         }
+
+        
+        statSummaryText.text = "Defense increased by 1";
+        statSummaryObj.SetActive(true);
+        StartCoroutine(Wait());
     }
 
     public void TrainSPD() {
@@ -166,10 +183,19 @@ public class TrainUnits : MonoBehaviour
                 unit3.IncreaseSpeed();
                 break;
         }
+
+        statSummaryText.text = "Speed increased by 1";
+        statSummaryObj.SetActive(true);
+        StartCoroutine(Wait());
     }
 
     public void Back() {
         unitsPannelObj.SetActive(true);
         trainStatPannelObj.SetActive(false);
+    }
+
+    IEnumerator Wait() {
+        yield return new WaitForSeconds(4f);
+        statSummaryObj.SetActive(false);
     }
 }
