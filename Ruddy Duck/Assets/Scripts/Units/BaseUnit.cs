@@ -12,6 +12,8 @@ public class BaseUnit : MonoBehaviour
     public double Speed;
     public string  skill;
 
+    public int goldCost = 10; //cost to upgrade unit
+
     // public HUDHealth HPBar;
 
     void createUnit(string name, double hp, double attack, double defense, double speed, string skill) {
@@ -22,5 +24,26 @@ public class BaseUnit : MonoBehaviour
         Defense = defense;
         Speed = speed;
         this.skill = skill;
+    }
+
+    public void IncreaseHP() {
+        maxHP += 10;
+        currentHP = maxHP;
+        goldCost += 5;
+    }
+
+    public void IncreaseAttack() {
+        Attack += 1;
+        goldCost += 5;
+    }
+
+    public void IncreaseDefense() {
+        Defense += 1;
+        goldCost += 5;
+    }
+
+    public void IncreaseSpeed() {
+        Speed += 1;
+        goldCost += 5;
     }
 }

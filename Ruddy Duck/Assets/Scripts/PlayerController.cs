@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     private KeyCode UnitList = KeyCode.Tab;
 
+    public int gold = 100;
+
     private void Start() {
         rb = GetComponent<Rigidbody>();
         // rb.freezeRotation = true;
