@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af16c517ecae5934a82a5b73bfab7967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: 
   maxHP: 10
   Attack: 1
   Defense: 1
@@ -1971,6 +1972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af16c517ecae5934a82a5b73bfab7967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: 
   maxHP: 10
   Attack: 1
   Defense: 1
@@ -2458,6 +2460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af16c517ecae5934a82a5b73bfab7967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: 
   maxHP: 10
   Attack: 1
   Defense: 1
@@ -2934,9 +2937,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1628897113}
   - component: {fileID: 1628897112}
-  - component: {fileID: 1628897118}
-  - component: {fileID: 1628897115}
   - component: {fileID: 1628897116}
+  - component: {fileID: 1628897118}
+  - component: {fileID: 1628897119}
+  - component: {fileID: 1628897115}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2987,6 +2991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af16c517ecae5934a82a5b73bfab7967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: 
   maxHP: 10
   Attack: 1
   Defense: 1
@@ -3025,6 +3030,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   rotationSpeed: 120
+--- !u!114 &1628897119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628897108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f360844b1bb9ab44b2fc68e0d9f6dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: 100
 --- !u!1 &1641085065
 GameObject:
   m_ObjectHideFlags: 0
@@ -3132,7 +3150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1769071457}
-  - component: {fileID: 1769071456}
+  - component: {fileID: 1769071459}
   - component: {fileID: 1769071458}
   m_Layer: 0
   m_Name: FriendlyNPC
@@ -3141,20 +3159,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1769071456
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769071454}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1769071457
 Transform:
   m_ObjectHideFlags: 0
@@ -3185,6 +3189,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactDistance: 2
   unitsPannelObj: {fileID: 239106276}
+--- !u!135 &1769071459
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769071454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1770839831
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontal, 0, vertical);
 
-        characterController.SimpleMove(direction * speed);
+        if (direction.magnitude >= 0.1f) {
+            characterController.SimpleMove(direction * speed);
 
-        if (direction.magnitude > 0) {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
