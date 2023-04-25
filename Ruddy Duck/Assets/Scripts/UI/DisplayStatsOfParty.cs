@@ -71,13 +71,13 @@ public class DisplayStatsOfParty : MonoBehaviour
                 panelOpen = false;
             } else {
                 statsPanelObj.SetActive(true);
-                DisplayStats(player);
+                DisplayStats(player, unit1, unit2, unit3);
                 panelOpen = true;
             }
         }
     }
 
-    void DisplayStats(BaseUnit player) {
+    void DisplayStats(BaseUnit player, BaseUnit unit1, BaseUnit unit2, BaseUnit unit3) {
         // Update text fields with player stats and display
         nameText.text = player.unitName;
         // Debug.Log("Player object: " + player.unitName);
@@ -93,28 +93,28 @@ public class DisplayStatsOfParty : MonoBehaviour
         // Debug.Log("Player skill: " + player.skill);
 
         // UNIT 1
-        // nameText1.text = unit1.unitName;
-        // hpText1.text = "HP: " + unit1.currentHP + "/" + unit1.maxHP;
-        // attackText1.text = "Atk: " + unit1.Attack;
-        // defenseText1.text = "Def: " + unit1.Defense;
-        // speedText1.text = "Spd: " + unit1.Speed;
-        // skillText1.text = "Skl: " + unit1.skill;
+        nameText1.text = unit1.unitName;
+        hpText1.text = "HP: " + unit1.currentHP + "/" + unit1.maxHP;
+        attackText1.text = "Atk: " + unit1.Attack;
+        defenseText1.text = "Def: " + unit1.Defense;
+        speedText1.text = "Spd: " + unit1.Speed;
+        skillText1.text = "Skl: " + unit1.skill;
 
         // // UNIT 2
-        // nameText2.text = unit2.unitName;
-        // hpText2.text = "HP: " + unit2.currentHP + "/" + unit2.maxHP;
-        // attackText2.text = "Atk: " + unit2.Attack;
-        // defenseText2.text = "Def: " + unit2.Defense;
-        // speedText2.text = "Spd: " + unit2.Speed;
-        // skillText2.text = "Skl: " + unit2.skill;
+        nameText2.text = unit2.unitName;
+        hpText2.text = "HP: " + unit2.currentHP + "/" + unit2.maxHP;
+        attackText2.text = "Atk: " + unit2.Attack;
+        defenseText2.text = "Def: " + unit2.Defense;
+        speedText2.text = "Spd: " + unit2.Speed;
+        skillText2.text = "Skl: " + unit2.skill;
 
         // // UNIT 3
-        // nameText3.text = unit3.unitName;
-        // hpText3.text = "HP: " + unit3.currentHP + "/" + unit3.maxHP;
-        // attackText3.text = "Atk: " + unit3.Attack;
-        // defenseText3.text = "Def: " + unit3.Defense;
-        // speedText3.text = "Spd: " + unit3.Speed;
-        // skillText3.text = "Skl: " + unit3.skill;
+        nameText3.text = unit3.unitName;
+        hpText3.text = "HP: " + unit3.currentHP + "/" + unit3.maxHP;
+        attackText3.text = "Atk: " + unit3.Attack;
+        defenseText3.text = "Def: " + unit3.Defense;
+        speedText3.text = "Spd: " + unit3.Speed;
+        skillText3.text = "Skl: " + unit3.skill;
 
     }
 }
