@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
-    string unitName = "";
+    public string unitName = "";
     public double maxHP = 10;
     public double currentHP { get; private set; }
     public double Attack;
