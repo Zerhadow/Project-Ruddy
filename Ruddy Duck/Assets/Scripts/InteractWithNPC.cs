@@ -7,6 +7,7 @@ public class InteractWithNPC : MonoBehaviour
     public float interactDistance = 2f;
     public GameObject unitsPannelObj;
     KeyCode interactKey = KeyCode.E;
+    bool interacted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -15,18 +16,25 @@ public class InteractWithNPC : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void FixedUpdate() {
+        if(Input.GetKey(interactKey)) {
+            Debug.Log("Interact key pressed");
+
+            if(interacted) {
+                Debug.Log("Interacted with NPC");
+                unitsPannelObj.SetActive(true);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
         Debug.Log("Player in range for interaction");
+        interacted = true;
+    }
 
-        if(Input.GetKeyDown(interactKey)) {
-            Debug.Log("Interacted with NPC");
-            unitsPannelObj.SetActive(true);
-        }
+    private void OnTriggerExit(Collider other) {
+        Debug.Log("Player out of range for interaction");
+        interacted = false;
     }
 
     private void OnDrawGizmos() {

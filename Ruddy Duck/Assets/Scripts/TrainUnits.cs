@@ -123,6 +123,7 @@ public class TrainUnits : MonoBehaviour
         statSummaryText.text = "HP increased by 10";
         statSummaryObj.SetActive(true);
         StartCoroutine(Wait());
+        trainStatPannelObj.SetActive(false);
     }
 
     public void TrainATK() {
@@ -144,6 +145,7 @@ public class TrainUnits : MonoBehaviour
         statSummaryText.text = "Attack increased by 1";
         statSummaryObj.SetActive(true);
         StartCoroutine(Wait());
+        trainStatPannelObj.SetActive(false);
     }
 
     public void TrainDEF() {
@@ -166,6 +168,7 @@ public class TrainUnits : MonoBehaviour
         statSummaryText.text = "Defense increased by 1";
         statSummaryObj.SetActive(true);
         StartCoroutine(Wait());
+        trainStatPannelObj.SetActive(false);
     }
 
     public void TrainSPD() {
@@ -187,6 +190,8 @@ public class TrainUnits : MonoBehaviour
         statSummaryText.text = "Speed increased by 1";
         statSummaryObj.SetActive(true);
         StartCoroutine(Wait());
+        trainStatPannelObj.SetActive(false);
+
     }
 
     public void Back() {
