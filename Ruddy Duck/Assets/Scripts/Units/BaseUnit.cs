@@ -10,7 +10,7 @@ public class BaseUnit : MonoBehaviour
     public double Attack;
     public double Defense;
     public double Speed;
-    public string  skill;
+    public string skill;
 
     // public HUDHealth HPBar;
 
