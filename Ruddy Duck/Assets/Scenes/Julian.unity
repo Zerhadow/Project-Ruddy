@@ -3651,6 +3651,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gold: 100
+  audioSource: {fileID: 0}
+  quackSound: {fileID: 8300000, guid: 793fd8e78be19430e826181a156a505d, type: 3}
+  eatingSound: {fileID: 8300000, guid: eb6f8645f5a1841c5a0292ce922e983d, type: 3}
 --- !u!114 &1628897120
 MonoBehaviour:
   m_ObjectHideFlags: 0
