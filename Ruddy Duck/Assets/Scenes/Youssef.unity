@@ -877,7 +877,6 @@ MonoBehaviour:
   Defense: 3
   Speed: 1
   skill: tank
-  goldCost: 10
 --- !u!136 &261592896
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1962,7 +1961,6 @@ MonoBehaviour:
   Defense: 0.5
   Speed: 5
   skill: emotional support
-  goldCost: 10
 --- !u!136 &623172134
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3937,7 +3935,6 @@ MonoBehaviour:
   Defense: 1
   Speed: 1
   skill: Doesnt Die
-  goldCost: 10
 --- !u!136 &1604262909
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4641,7 +4638,6 @@ MonoBehaviour:
   Defense: 1
   Speed: 2
   skill: ranged attacks
-  goldCost: 10
 --- !u!136 &1972115488
 CapsuleCollider:
   m_ObjectHideFlags: 0
