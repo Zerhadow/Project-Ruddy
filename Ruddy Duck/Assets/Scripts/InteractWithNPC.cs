@@ -4,37 +4,42 @@ using UnityEngine;
 
 public class InteractWithNPC : MonoBehaviour
 {
-    public float interactDistance = 2f;
+    public float interactDistance = 3f;
     public GameObject unitsPannelObj;
+    public GameObject textBoxObj;
     KeyCode interactKey = KeyCode.E;
-    bool interacted = false;
+    bool npcInteract = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        textBoxObj.SetActive(false);
     }
 
-    // Update is called once per frame
     void FixedUpdate() {
-        if(Input.GetKey(interactKey)) {
+        if(Input.GetKey(interactKey) && npcInteract) {
             Debug.Log("Interact key pressed");
 
-            if(interacted) {
-                Debug.Log("Interacted with NPC");
-                unitsPannelObj.SetActive(true);
-            }
+            textBoxObj.SetActive(false);
+            unitsPannelObj.SetActive(true);
         }
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Player in range for interaction");
-        interacted = true;
+        Debug.Log("In range of: " + other.name);
+        // Debug.Log("Player in range for interaction");
+
+    if(other.tag == "NPC") {
+        npcInteract = true;
+
+        textBoxObj.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other) {
         Debug.Log("Player out of range for interaction");
-        interacted = false;
+        npcInteract = false;
+
+        textBoxObj.SetActive(false);
     }
 
     private void OnDrawGizmos() {
