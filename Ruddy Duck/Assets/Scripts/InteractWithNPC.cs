@@ -41,9 +41,4 @@ public class InteractWithNPC : MonoBehaviour
 
         textBoxObj.SetActive(false);
     }
-
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, interactDistance);
-    }
 }
