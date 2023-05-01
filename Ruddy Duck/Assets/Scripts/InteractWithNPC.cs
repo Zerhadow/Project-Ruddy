@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractWithNPC : MonoBehaviour
 {
-    public float interactDistance = 2f;
+    public float interactDistance = 3f;
     public GameObject unitsPannelObj;
     public GameObject textBoxObj;
     KeyCode interactKey = KeyCode.E;
@@ -25,10 +25,14 @@ public class InteractWithNPC : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Player in range for interaction");
+        Debug.Log("In range of: " + other.name);
+        // Debug.Log("Player in range for interaction");
+
+    if(other.tag == "NPC") {
         npcInteract = true;
 
         textBoxObj.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other) {
