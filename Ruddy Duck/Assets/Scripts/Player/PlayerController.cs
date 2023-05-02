@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
         // play eating sound effect if player collided with object and presses E
         //  && Input.GetKeyDown(KeyCode.E)
-        if (isColliding) {
+        if (isColliding || Input.GetKeyDown(KeyCode.E)) {
             audioSource.PlayOneShot(eatingSound);
         }
 
