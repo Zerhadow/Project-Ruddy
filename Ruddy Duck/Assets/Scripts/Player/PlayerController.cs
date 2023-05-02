@@ -1,28 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public int gold = 100;
+    public int bread = 0;
 
     public AudioSource audioSource;
     public AudioClip quackSound;
     public AudioClip eatingSound;
+
     public GameObject PauseMenu;
     private bool paused = false;
 
     private bool isColliding = false;
 
+    private BaseUnit playerUnit;
+    public GameObject gameOverText;
+
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        playerUnit = GetComponent<BaseUnit>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         // play quack sound effect when Q button is pressed 
         if (Input.GetKeyDown(KeyCode.Q)) {
             audioSource.PlayOneShot(quackSound);
@@ -47,6 +53,16 @@ public class PlayerController : MonoBehaviour
                 PauseMenu.SetActive(false);
             }
         }
+
+        if(playerUnit.currentHP <= 0) {
+            // Debug.Log("Player is dead");
+            Time.timeScale = 0;
+            gameOverText.SetActive(true);
+            StartCoroutine(Wait());
+
+            //load title screen
+            SceneManager.LoadScene("TitleScreen2");
+        }
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -59,5 +75,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Food") {
             isColliding = false;
         }
+    }
+
+    IEnumerator Wait() {
+        yield return new WaitForSeconds(1);
     }
 }
