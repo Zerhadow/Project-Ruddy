@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip quackSound;
     public AudioClip eatingSound;
+    public GameObject PauseMenu;
+    private bool paused = false;
 
     private bool isColliding = false;
 
@@ -32,17 +34,28 @@ public class PlayerController : MonoBehaviour
             audioSource.PlayOneShot(eatingSound);
         }
 
+        if(Input.GetKeyDown(KeyCode.P)) {
+            // Debug.Log("P pressed");
+
+            if(!paused) { //pause game
+                paused = true;
+                Time.timeScale = 0;
+                PauseMenu.SetActive(true);
+            } else { //unpause game
+                paused = false;
+                Time.timeScale = 1;
+                PauseMenu.SetActive(false);
+            }
+        }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
+    void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Food") {
             isColliding = true;
         }
     }
 
-    void OnCollisionExit(Collision collision)
-    {
+    void OnCollisionExit(Collision collision) {
         if (collision.gameObject.tag == "Food") {
             isColliding = false;
         }
