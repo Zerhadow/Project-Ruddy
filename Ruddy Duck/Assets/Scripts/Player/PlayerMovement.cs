@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -25,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Velocity", direction.magnitude);
         // Debug.Log(direction.magnitude);
 
-        if (direction != Vector3.zero) {
+        if (direction != Vector3.zero)
+        {
             characterController.SimpleMove(direction * speed);
             // Debug.Log("Moving: " + direction * speed);
 

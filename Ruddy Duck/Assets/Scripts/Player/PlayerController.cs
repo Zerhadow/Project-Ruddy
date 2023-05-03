@@ -28,33 +28,41 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         // play quack sound effect when Q button is pressed 
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             audioSource.PlayOneShot(quackSound);
         }
 
         // play eating sound effect if player collided with object and presses E
         //  && Input.GetKeyDown(KeyCode.E)
-        if (isColliding || Input.GetKeyDown(KeyCode.E)) {
+        if (isColliding || Input.GetKeyDown(KeyCode.F))
+        {
             audioSource.PlayOneShot(eatingSound);
         }
 
-        if(Input.GetKeyDown(KeyCode.P)) {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
             // Debug.Log("P pressed");
 
-            if(!paused) { //pause game
+            if (!paused)
+            { //pause game
                 paused = true;
                 Time.timeScale = 0;
                 PauseMenu.SetActive(true);
-            } else { //unpause game
+            }
+            else
+            { //unpause game
                 paused = false;
                 Time.timeScale = 1;
                 PauseMenu.SetActive(false);
             }
         }
 
-        if(playerUnit.currentHP <= 0) {
+        if (playerUnit.currentHP <= 0)
+        {
             // Debug.Log("Player is dead");
             Time.timeScale = 0;
             gameOverText.SetActive(true);
@@ -65,19 +73,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Food") {
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Food")
+        {
             isColliding = true;
         }
     }
 
-    void OnCollisionExit(Collision collision) {
-        if (collision.gameObject.tag == "Food") {
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Food")
+        {
             isColliding = false;
         }
     }
 
-    IEnumerator Wait() {
+    IEnumerator Wait()
+    {
         yield return new WaitForSeconds(1);
     }
 }

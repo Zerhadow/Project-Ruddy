@@ -15,8 +15,10 @@ public class InteractWithNPC : MonoBehaviour
         textBoxObj.SetActive(false);
     }
 
-    void FixedUpdate() {
-        if(Input.GetKey(interactKey) && npcInteract) {
+    void FixedUpdate()
+    {
+        if (Input.GetKey(interactKey) && npcInteract)
+        {
             Debug.Log("Interact key pressed");
 
             textBoxObj.SetActive(false);
@@ -24,18 +26,21 @@ public class InteractWithNPC : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
         Debug.Log("In range of: " + other.name);
         // Debug.Log("Player in range for interaction");
 
-    if(other.tag == "NPC") {
-        npcInteract = true;
+        if (other.tag == "NPC")
+        {
+            npcInteract = true;
 
-        textBoxObj.SetActive(true);
+            textBoxObj.SetActive(true);
         }
     }
 
-    private void OnTriggerExit(Collider other) {
+    private void OnTriggerExit(Collider other)
+    {
         Debug.Log("Player out of range for interaction");
         npcInteract = false;
 
