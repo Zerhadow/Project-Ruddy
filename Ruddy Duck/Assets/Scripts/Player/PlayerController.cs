@@ -16,9 +16,15 @@ public class PlayerController : MonoBehaviour
     private bool paused = false;
 
     private bool isColliding = false;
+    private Animator anim;
 
     private BaseUnit playerUnit;
     public GameObject gameOverText;
+
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +38,11 @@ public class PlayerController : MonoBehaviour
         // play quack sound effect when Q button is pressed 
         if (Input.GetKeyDown(KeyCode.Q)) {
             audioSource.PlayOneShot(quackSound);
+        }
+
+        //if player left clicks, play attack animation
+        if (Input.GetMouseButtonDown(0)) {
+            StartCoroutine(AttackAnimation());
         }
 
         // play eating sound effect if player collided with object and presses E
@@ -65,7 +76,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision) {
+    IEnumerator AttackAnimation() {
+        //set attack animation to true
+        anim.SetBool("Attack", true);
+        yield return new WaitForSeconds(2.15f);
+        anim.SetBool("Attack", false);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
         if (collision.gameObject.tag == "Food") {
             isColliding = true;
         }
