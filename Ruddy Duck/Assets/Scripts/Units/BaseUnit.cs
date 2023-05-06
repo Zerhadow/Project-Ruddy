@@ -12,16 +12,9 @@ public class BaseUnit : MonoBehaviour
     public double Speed;
     public string skill;
 
-    private bool blocked = false;
-    private bool doubleAttack = false;
-
     public int goldCost = 10; //cost to upgrade unit
 
     // public HUDHealth HPBar;
-
-    void Awake() {
-        currentHP = maxHP;
-    }
 
     void createUnit(string name, double hp, double attack, double defense, double speed, string skill) {
         unitName = name;
@@ -52,55 +45,5 @@ public class BaseUnit : MonoBehaviour
     public void IncreaseSpeed() {
         Speed += 1;
         goldCost += 5;
-    }
-
-    public void TakeDamage(BaseUnit attacker, BaseUnit defender) {
-        Debug.Log(attacker.unitName + " attacks " + defender.unitName);
-
-        //Defense formula: compare def v. Atk. If def higher, remainder is percent chance of block
-        if (defender.Defense > attacker.Attack) {
-            double remainder = defender.Defense - attacker.Attack;
-            double blockChance = (remainder / defender.Defense) * 100;
-
-            //random value between 0 and 100
-            double random = Random.Range(0, 100);
-
-            if (random < blockChance) {
-                blocked = true;
-                Debug.Log("Attack Blocked");
-            }
-        } 
-        // Speed formula: compare spd v spd. If faster, remainder is chance to double
-        if (defender.Speed > attacker.Speed) {
-            double remainder = defender.Speed - attacker.Speed;
-            double doubleChance = (remainder / defender.Speed) * 100;
-
-            //random value between 0 and 100
-            double random = Random.Range(0, 100);
-
-            if (random < doubleChance) {
-                doubleAttack = true;
-                Debug.Log("Double Attack");
-            }
-        }
-
-        if(!blocked) {
-            if(doubleAttack) {
-                currentHP -= (attacker.Attack * 2);
-                Debug.Log("defender takes " + (attacker.Attack * 2) + " damage");
-            } else {
-                currentHP -= attacker.Attack;
-                Debug.Log("defender takes " + attacker.Attack + " damage");
-            }
-        }
-
-        blocked = false;
-        doubleAttack = false;        
-        
-        if(currentHP <= 0) {
-            Debug.Log(unitName + " has died.");
-        }
-
-        // HPBar.SetHealth(currentHP);
     }
 }
