@@ -26,6 +26,10 @@ public class BaseUnit : MonoBehaviour
         this.skill = skill;
     }
 
+    public float GetCurrHP() {
+        return (float)currentHP;
+    }
+
     public void IncreaseHP() {
         maxHP += 10;
         currentHP = maxHP;
