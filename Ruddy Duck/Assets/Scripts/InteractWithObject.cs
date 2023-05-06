@@ -40,7 +40,7 @@ public class InteractWithObject : MonoBehaviour
             Debug.Log("Sword Hit: " + other.name);
             // other.GetComponent<EnemyHealth>().TakeDamage(10);
             BaseUnit enemyStats = other.GetComponent<BaseUnit>();
-            other.GetComponent<BaseUnit>().TakeDamage(unitStats, enemyStats);
+            enemyStats.GetComponent<BaseUnit>().TakeDamage(unitStats, enemyStats);
         }
     }
 

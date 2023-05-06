@@ -4131,7 +4131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee95e986e92ab84caeed9434d3c5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1628897108}
 --- !u!1 &1858741254
 GameObject:
   m_ObjectHideFlags: 0
@@ -5225,6 +5225,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046691228482932057, guid: 523b14098eeaa9e4e830855b5ec7d33a,
+        type: 3}
+      propertyPath: Speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046691228482932057, guid: 523b14098eeaa9e4e830855b5ec7d33a,
+        type: 3}
+      propertyPath: maxHP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046691228482932057, guid: 523b14098eeaa9e4e830855b5ec7d33a,
+        type: 3}
+      propertyPath: Attack
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046691228482932057, guid: 523b14098eeaa9e4e830855b5ec7d33a,
+        type: 3}
+      propertyPath: Defense
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6046691228482932059, guid: 523b14098eeaa9e4e830855b5ec7d33a,
         type: 3}
