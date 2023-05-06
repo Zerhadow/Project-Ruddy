@@ -305,7 +305,6 @@ GameObject:
   - component: {fileID: 218862128}
   - component: {fileID: 218862131}
   - component: {fileID: 218862130}
-  - component: {fileID: 218862129}
   m_Layer: 0
   m_Name: Capsule (5)
   m_TagString: Untagged
@@ -328,20 +327,6 @@ Transform:
   m_Father: {fileID: 59010761}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &218862129
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218862127}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &218862130
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -491,7 +476,6 @@ GameObject:
   m_Component:
   - component: {fileID: 254372629}
   - component: {fileID: 254372630}
-  - component: {fileID: 254372631}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -529,18 +513,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.49642718, y: 1.2223961, z: 0.2865048}
   m_Center: {x: -0.026943458, y: 0.65150404, z: -0.0101729045}
---- !u!114 &254372631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254372628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d70c6e6601b6a84eba288d52ee32702, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &305512767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,7 +2026,6 @@ GameObject:
   - component: {fileID: 1158644119}
   - component: {fileID: 1158644122}
   - component: {fileID: 1158644121}
-  - component: {fileID: 1158644120}
   m_Layer: 0
   m_Name: Capsule (4)
   m_TagString: Untagged
@@ -2077,20 +2048,6 @@ Transform:
   m_Father: {fileID: 59010761}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1158644120
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158644118}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1158644121
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2618,7 +2575,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1293642484}
-  - component: {fileID: 1293642483}
+  - component: {fileID: 1293642485}
+  - component: {fileID: 1293642486}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -2626,20 +2584,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1293642483
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293642479}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1293642484
 Transform:
   m_ObjectHideFlags: 0
@@ -2656,6 +2600,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &1293642485
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293642479}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1293642486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293642479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af16c517ecae5934a82a5b73bfab7967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Amogus
+  maxHP: 50
+  Attack: 5
+  Defense: 6
+  Speed: 5
+  skill: Something cool
+  goldCost: 10
 --- !u!1 &1456922317
 GameObject:
   m_ObjectHideFlags: 0
@@ -3076,7 +3052,6 @@ GameObject:
   - component: {fileID: 1528427554}
   - component: {fileID: 1528427557}
   - component: {fileID: 1528427556}
-  - component: {fileID: 1528427555}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: Untagged
@@ -3099,20 +3074,6 @@ Transform:
   m_Father: {fileID: 59010761}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1528427555
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528427553}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1528427556
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3545,6 +3506,7 @@ GameObject:
   - component: {fileID: 1628897115}
   - component: {fileID: 1628897120}
   - component: {fileID: 1628897121}
+  - component: {fileID: 1628897122}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3596,10 +3558,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Ruddy
-  maxHP: 10
-  Attack: 1
-  Defense: 1
-  Speed: 1
+  maxHP: 50
+  Attack: 5
+  Defense: 5
+  Speed: 5
   skill: Leader
   goldCost: 10
 --- !u!143 &1628897116
@@ -3685,6 +3647,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1628897122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628897108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d70c6e6601b6a84eba288d52ee32702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1641085065
 GameObject:
   m_ObjectHideFlags: 0
@@ -4663,7 +4637,6 @@ GameObject:
   - component: {fileID: 2063412401}
   - component: {fileID: 2063412404}
   - component: {fileID: 2063412403}
-  - component: {fileID: 2063412402}
   m_Layer: 0
   m_Name: Capsule (3)
   m_TagString: Untagged
@@ -4686,20 +4659,6 @@ Transform:
   m_Father: {fileID: 59010761}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2063412402
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2063412400}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2063412403
 MeshRenderer:
   m_ObjectHideFlags: 0
