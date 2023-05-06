@@ -27,7 +27,7 @@ public class InteractWithObject : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("In range of: " + other.name);
+        // Debug.Log("In range of: " + other.name);
         // Debug.Log("Player in range for interaction");
 
         if(other.tag == "NPC") {
@@ -47,7 +47,7 @@ public class InteractWithObject : MonoBehaviour
     
 
     private void OnTriggerExit(Collider other) {
-        Debug.Log("Player out of range for interaction");
+        // Debug.Log("Player out of range for interaction");
         npcInteract = false;
 
         textBoxObj.SetActive(false);

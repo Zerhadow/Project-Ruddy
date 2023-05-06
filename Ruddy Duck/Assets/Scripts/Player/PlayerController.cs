@@ -20,11 +20,14 @@ public class PlayerController : MonoBehaviour
     private BaseUnit playerUnit;
     public GameObject gameOverText;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         playerUnit = GetComponent<BaseUnit>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,11 @@ public class PlayerController : MonoBehaviour
         //  && Input.GetKeyDown(KeyCode.E)
         if (isColliding || Input.GetKeyDown(KeyCode.E)) {
             audioSource.PlayOneShot(eatingSound);
+        }
+
+        //if player left clicks, play attack animation
+        if (Input.GetMouseButtonDown(0)) {
+            StartCoroutine(AttackAnimation());
         }
 
         if(Input.GetKeyDown(KeyCode.P)) {
@@ -63,6 +71,13 @@ public class PlayerController : MonoBehaviour
             //load title screen
             SceneManager.LoadScene("TitleScreen2");
         }
+    }
+
+    IEnumerator AttackAnimation() {
+        //set attack animation to true
+        anim.SetBool("Attack", true);
+        yield return new WaitForSeconds(1.45f);
+        anim.SetBool("Attack", false);
     }
 
     void OnCollisionEnter(Collision collision) {
