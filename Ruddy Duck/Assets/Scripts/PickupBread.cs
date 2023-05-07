@@ -7,7 +7,7 @@ public class PickupBread : MonoBehaviour
     public BaseUnit playerStats;
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log("Triggered");
+        // Debug.Log("Triggered");
 
         if (other.CompareTag("Player")) {
             Destroy(gameObject);
