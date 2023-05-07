@@ -68,15 +68,4 @@ public class EnemyController : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         onCooldown = false;
     }
-
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log("Triggered: " + other.name);
-
-        if(other.tag == "Player" || other.tag == "Ally") {
-            Debug.Log("Hit: " + other.name);
-            // other.GetComponent<EnemyHealth>().TakeDamage(10);
-            BaseUnit otherStats = other.GetComponent<BaseUnit>();
-            otherStats.GetComponent<BaseUnit>().TakeDamage(otherStats, GetComponent<BaseUnit>());
-        }
-    }
 }

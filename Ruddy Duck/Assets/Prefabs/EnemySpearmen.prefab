@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af16c517ecae5934a82a5b73bfab7967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Unit
+  unitName: EnemySpearDuck
   maxHP: 50
   Attack: 5
   Defense: 5
