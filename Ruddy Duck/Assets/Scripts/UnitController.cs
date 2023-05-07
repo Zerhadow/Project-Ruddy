@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
+public class UnitController : MonoBehaviour {
     //look for all game objects with tag "Player" or "Ally"
-    public GameObject[] targets;
+    List<GameObject> targets = new List<GameObject>();
     float distanceToNearestTarget = 100f;
     private GameObject currentTarget = null;
 
@@ -14,18 +14,38 @@ public class EnemyController : MonoBehaviour {
 
     private void Awake() {
         anim = GetComponent<Animator>();
+        
+        if(this.tag == "Enemy") {
+            //for each object that has the tag player, add it to the targets array
+            for( int i = 0; i < 3; i++) {
+                targets.Add(GameObject.FindGameObjectsWithTag("Ally")[i]);
+                // Debug.Log("Enemies targets[" + i + "]: " + targets[i].name);
+            }
+
+            targets.Add(GameObject.Find("Player"));
+        }
+        
+        if(this.tag == "Ally") {
+            //for each object that has the tag enemy, add it to the targets array
+            for( int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++) {
+                targets.Add(GameObject.FindGameObjectsWithTag("Enemy")[i]);
+                // Debug.Log("Allies targets[" + i + "]: " + targets[i].name);
+            }
+
+            // Debug.Log("Contents of target 1 for ally: " + targets[0].name);
+        }
     }
 
     void Update() {
         //if there are no targets, return
-        if(targets.Length == 0) {
+        if(targets.Count == 0) {
             return;
         }
 
         FindNearestTarget();
 
         //if distance to current target is less than 2
-        if(distanceToNearestTarget < 3f) {
+        if(distanceToNearestTarget < 3.2f) {
             //play attack animation
             if(!onCooldown ) {
                 StartCoroutine(AttackAnimation());
@@ -42,6 +62,8 @@ public class EnemyController : MonoBehaviour {
 
     void FindNearestTarget() {
         foreach (GameObject target in targets) {
+            // Debug.Log("Target: " + target.name);
+
             //get distance to current target
             float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
             // Debug.Log("Distance to target: " + distanceToTarget);
