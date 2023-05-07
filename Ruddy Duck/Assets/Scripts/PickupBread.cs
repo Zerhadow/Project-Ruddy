@@ -6,6 +6,10 @@ public class PickupBread : MonoBehaviour
 {
     public BaseUnit playerStats;
 
+    private void Awake() {
+        playerStats = GameObject.Find("Player").GetComponent<BaseUnit>();
+    }
+
     void OnTriggerEnter(Collider other) {
         // Debug.Log("Triggered");
 
