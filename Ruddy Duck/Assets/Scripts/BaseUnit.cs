@@ -23,15 +23,15 @@ public class BaseUnit : MonoBehaviour
         currentHP = maxHP;
     }
 
-    void createUnit(string name, double hp, double attack, double defense, double speed, string skill) {
-        unitName = name;
-        maxHP = hp;
-        currentHP = hp;
-        Attack = attack;
-        Defense = defense;
-        Speed = speed;
-        this.skill = skill;
-    }
+    // void createUnit(string name, double hp, double attack, double defense, double speed, string skill) {
+    //     unitName = name;
+    //     maxHP = hp;
+    //     currentHP = hp;
+    //     Attack = attack;
+    //     Defense = defense;
+    //     Speed = speed;
+    //     this.skill = skill;
+    // }
 
     public float GetCurrHP() {
         return (float)currentHP;

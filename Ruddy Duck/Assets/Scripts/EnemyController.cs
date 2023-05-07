@@ -5,15 +5,14 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
     //look for all game objects with tag "Player" or "Ally"
     public GameObject[] targets;
+    float distanceToNearestTarget = 100f;
+    private GameObject currentTarget = null;
 
     private Animator anim;
 
-    private void Awake() {
-        //find all game objects with tag "Player" or "Ally"
-        targets = GameObject.FindGameObjectsWithTag("Player");
-        targets = GameObject.FindGameObjectsWithTag("Ally");
+    bool onCooldown = false;
 
-        //get animator component
+    private void Awake() {
         anim = GetComponent<Animator>();
     }
 
@@ -23,19 +22,36 @@ public class EnemyController : MonoBehaviour {
             return;
         }
 
-        //loop through all targets
+        FindNearestTarget();
 
-        for(int i = 0; i < 4; i++) {
-            //get distance between enemy and target
-            float distance = Vector3.Distance(transform.position, targets[i].transform.position);
-
-            //if distance is less than 5, attack target
-            if(distance < 5f) {
-                //attack target
+        //if distance to current target is less than 2
+        if(distanceToNearestTarget < 3f) {
+            //play attack animation
+            if(!onCooldown ) {
                 StartCoroutine(AttackAnimation());
-            } else {
-                //move towards target
-                transform.position = Vector3.MoveTowards(transform.position, targets[i].transform.position, 0.1f);
+                StartCoroutine(AttackCooldown());
+            }
+        } else {
+            //move towards target
+            transform.position = Vector3.MoveTowards(transform.position, currentTarget.transform.position, 0.01f);
+            anim.SetFloat("Velocity", 0.5f);
+            // Debug.Log("Moving towards target");
+        }
+
+    }
+
+    void FindNearestTarget() {
+        foreach (GameObject target in targets) {
+            //get distance to current target
+            float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
+            // Debug.Log("Distance to target: " + distanceToTarget);
+
+            //if distance to current target is less than distance to nearest target
+            if(distanceToTarget < distanceToNearestTarget) {
+                //set nearest target to current target
+                distanceToNearestTarget = distanceToTarget;
+                currentTarget = target;
+                // Debug.Log("Target: " + target.name);
             }
         }
     }
@@ -45,5 +61,21 @@ public class EnemyController : MonoBehaviour {
         anim.SetBool("Attack", true);
         yield return new WaitForSeconds(1.45f);
         anim.SetBool("Attack", false);
+        onCooldown = true;
+    }
+
+    IEnumerator AttackCooldown() {
+        yield return new WaitForSeconds(3f);
+        onCooldown = false;
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        Debug.Log("Triggered: " + other.name);
+        if(other.tag == "Player" || other.tag == "Ally") {
+            Debug.Log("Hit: " + other.name);
+            // other.GetComponent<EnemyHealth>().TakeDamage(10);
+            BaseUnit otherStats = other.GetComponent<BaseUnit>();
+            otherStats.GetComponent<BaseUnit>().TakeDamage(otherStats, GetComponent<BaseUnit>());
+        }
     }
 }
