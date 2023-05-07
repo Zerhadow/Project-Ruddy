@@ -23,6 +23,13 @@ public class BaseUnit : MonoBehaviour
         currentHP = maxHP;
     }
 
+    void FixedUpdate() {
+        if(currentHP <= 0) {
+            Debug.Log(unitName + " has died."); 
+            Destroy(gameObject);
+        }
+    }
+
     // void createUnit(string name, double hp, double attack, double defense, double speed, string skill) {
     //     unitName = name;
     //     maxHP = hp;
@@ -99,12 +106,11 @@ public class BaseUnit : MonoBehaviour
         } 
 
         blocked = false; 
-        doubleAttack = false;         
-    
-        if(currentHP <= 0) { 
-            Debug.Log(unitName + " has died."); 
-        } 
-        
-        // HPBar.SetHealth(currentHP); 
+        doubleAttack = false;        
+    }
+
+    public void TakeFlatDamage(double damage) {
+        currentHP -= damage;
+        // Debug.Log(unitName + " takes " + damage + " damage");
     }
 }
