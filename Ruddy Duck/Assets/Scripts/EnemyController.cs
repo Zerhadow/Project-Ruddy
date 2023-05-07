@@ -71,6 +71,7 @@ public class EnemyController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         Debug.Log("Triggered: " + other.name);
+
         if(other.tag == "Player" || other.tag == "Ally") {
             Debug.Log("Hit: " + other.name);
             // other.GetComponent<EnemyHealth>().TakeDamage(10);
