@@ -9,6 +9,7 @@ TagManager:
   - EnemyBullet
   - NPC
   - Ally
+  - Bread
   layers:
   - Default
   - TransparentFX

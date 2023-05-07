@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class PickupBread : MonoBehaviour
 {
-    public GameObject player;
-    PlayerController playerController;
-    BaseUnit playerStats;
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerController = player.GetComponent<PlayerController>();
-        playerStats = player.GetComponent<BaseUnit>();
-    }
+    public BaseUnit playerStats;
 
-    void OntriggerEnter(Collider other)
-    {
+    void OnTriggerEnter(Collider other) {
+        Debug.Log("Triggered");
+
         if (other.CompareTag("Player")) {
             Destroy(gameObject);
-            
-            playerController.bread += 1;
+            playerStats.IncreaseAllStats();
+            Debug.Log("Player stats increased");
         }
     }
 }

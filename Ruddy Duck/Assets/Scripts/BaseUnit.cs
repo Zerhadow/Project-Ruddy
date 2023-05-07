@@ -65,6 +65,14 @@ public class BaseUnit : MonoBehaviour
         goldCost += 5;
     }
 
+    public void IncreaseAllStats() {
+        maxHP += 5;
+        Attack += 1;
+        Defense += 1;
+        Speed += 1;
+        goldCost += 5;
+    }
+
     public void TakeDamage(BaseUnit attacker, BaseUnit defender) { 
         Debug.Log(attacker.unitName + " attacks " + defender.unitName); 
 
