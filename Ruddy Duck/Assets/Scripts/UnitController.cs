@@ -24,22 +24,24 @@ public class UnitController : MonoBehaviour {
 
             targets.Add(GameObject.Find("Player"));
         }
-        
-        if(this.tag == "Ally") {
-            //for each object that has the tag enemy, add it to the targets array
-            for( int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++) {
-                targets.Add(GameObject.FindGameObjectsWithTag("Enemy")[i]);
-                // Debug.Log("Allies targets[" + i + "]: " + targets[i].name);
-            }
-
-            // Debug.Log("Contents of target 1 for ally: " + targets[0].name);
-        }
     }
 
     void Update() {
         //if there are no targets, return
         if(targets.Count == 0) {
             return;
+        }
+
+        if(this.tag == "Ally") {
+            Debug.Log("Ally");
+
+            //for each object that has the tag enemy, add it to the targets array
+            for( int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++) {
+                targets.Add(GameObject.FindGameObjectsWithTag("Enemy")[i]);
+                Debug.Log("Allies targets[" + i + "]: " + targets[i].name);
+            }
+
+            // Debug.Log("Contents of target 1 for ally: " + targets[0].name);
         }
 
         FindNearestTarget();
@@ -76,6 +78,11 @@ public class UnitController : MonoBehaviour {
                 // Debug.Log("Target: " + target.name);
             }
         }
+
+        //face target
+        Vector3 direction = currentTarget.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = rotation;
     }
 
     IEnumerator AttackAnimation() {

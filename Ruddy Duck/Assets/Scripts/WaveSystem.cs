@@ -122,16 +122,10 @@ public class WaveSystem : MonoBehaviour {
 
         waveText.text = "Wave: " + waveCount.ToString();
 
-        if(wave.enemy.Length == wave.enemies.Length) {
-            for(int i = 0; i < wave.enemy.Length; i++) {
-                for(int j = 0; j < wave.enemies[i]; j++) {
-                    SpawnEnemy(wave.enemy[i]);
-                    yield return new WaitForSeconds(1/wave.rate);
-                }
-            }
-        } else {
-            Debug.Log("Enemy and enemy count arrays are not the same length");
-        }
+        for(int i = 0; i < wave.enemies.Length; i++) {
+            SpawnEnemy(wave.enemy[0]);
+            yield return new WaitForSeconds(1/wave.rate);
+        }        
 
         // enemiesLeftText.text = "Enemies Left: " + totalEnemies.ToString();
 
@@ -142,7 +136,7 @@ public class WaveSystem : MonoBehaviour {
     }
 
     void SpawnEnemy(Transform _enemy) {
-        // Debug.Log("Spawning Enemy: " + _enemy.name);
+        Debug.Log("Spawning Enemy: " + _enemy.name);
 
         //spawn enemy; change from random
         Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
