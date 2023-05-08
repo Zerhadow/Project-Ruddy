@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PickupCoin : MonoBehaviour
 {
-    public PlayerController PlayerController;
+    PlayerController PlayerController;
+
+    void Awake() {
+        PlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
 
     void Update() {
         //rotate the coin

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickupBread : MonoBehaviour
 {
-    public BaseUnit playerStats;
+    BaseUnit playerStats;
 
     private void Awake() {
         playerStats = GameObject.Find("Player").GetComponent<BaseUnit>();

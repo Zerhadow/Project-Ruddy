@@ -73,6 +73,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void BeatGame() {
+        //load title screen
+        SceneManager.LoadScene("WinScene");
+    }
+
     IEnumerator AttackAnimation() {
         //set attack animation to true
         anim.SetBool("Attack", true);
