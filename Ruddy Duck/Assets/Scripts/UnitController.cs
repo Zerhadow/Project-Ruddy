@@ -14,7 +14,7 @@ public class UnitController : MonoBehaviour {
 
     private void Awake() {
         anim = GetComponent<Animator>();
-        
+
         if(this.tag == "Enemy") {
             //for each object that has the tag player, add it to the targets array
             for( int i = 0; i < 3; i++) {
@@ -42,6 +42,17 @@ public class UnitController : MonoBehaviour {
             }
 
             // Debug.Log("Contents of target 1 for ally: " + targets[0].name);
+        }
+
+        if(this.tag == "Enemy") {
+            //for each object that has the tag player, add it to the targets array
+            for( int i = 0; i < 3; i++) {
+                Debug.Log("Size of targets: " + targets.Count);
+                targets.Add(GameObject.FindGameObjectsWithTag("Ally")[i]);
+                // Debug.Log("Enemies targets[" + i + "]: " + targets[i].name);
+            }
+
+            targets.Add(GameObject.Find("Player"));
         }
 
         FindNearestTarget();

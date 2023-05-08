@@ -8,9 +8,8 @@ public class PlayerController : MonoBehaviour
     public int gold = 100;
     public int bread = 0;
 
-    public AudioSource audioSource;
+    public AudioSource quack;
     public AudioClip quackSound;
-    public AudioClip eatingSound;
 
     public GameObject PauseMenu;
     private bool paused = false;
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        quack = GetComponent<AudioSource>();
         playerUnit = GetComponent<BaseUnit>();
         anim = GetComponent<Animator>();
     }
@@ -34,13 +33,7 @@ public class PlayerController : MonoBehaviour
     void Update() {
         // play quack sound effect when Q button is pressed 
         if (Input.GetKeyDown(KeyCode.Q)) {
-            audioSource.PlayOneShot(quackSound);
-        }
-
-        // play eating sound effect if player collided with object and presses E
-        //  && Input.GetKeyDown(KeyCode.E)
-        if (isColliding || Input.GetKeyDown(KeyCode.E)) {
-            audioSource.PlayOneShot(eatingSound);
+            quack.PlayOneShot(quackSound);
         }
 
         //if player left clicks, play attack animation
@@ -86,13 +79,13 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Food") {
+        if (collision.gameObject.tag == "Bread") {
             isColliding = true;
         }
     }
 
     void OnCollisionExit(Collision collision) {
-        if (collision.gameObject.tag == "Food") {
+        if (collision.gameObject.tag == "Bread") {
             isColliding = false;
         }
     }
