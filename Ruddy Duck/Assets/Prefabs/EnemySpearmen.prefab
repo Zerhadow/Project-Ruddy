@@ -1246,6 +1246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1f5c534efc7cb4f94fa4f89681ee49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targets:
+  - {fileID: 6046691228482932054, guid: 523b14098eeaa9e4e830855b5ec7d33a, type: 3}
+  - {fileID: 1137445225841779398, guid: f36ee7235578f20488d7459febbbae91, type: 3}
+  - {fileID: 5581489827262935070, guid: ccd89c5d29a63d242b9ed6570134203f, type: 3}
+  - {fileID: 7225587996470504381, guid: c8a37dc5f46a6684485bbccbe9eb74e5, type: 3}
 --- !u!65 &3983251086779818454
 BoxCollider:
   m_ObjectHideFlags: 0

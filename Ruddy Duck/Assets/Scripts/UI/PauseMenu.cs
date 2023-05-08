@@ -23,5 +23,11 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToArena() {
         SceneManager.LoadScene("Arena");
+        Time.timeScale = 1;
+    }
+
+    public void GoToTown() {
+        SceneManager.LoadScene("Town");
+        Time.timeScale = 1;
     }
 }

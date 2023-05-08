@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitController : MonoBehaviour {
+public class EnemyController : MonoBehaviour {
     //look for all game objects with tag "Player" or "Ally"
-    List<GameObject> targets = new List<GameObject>();
+    public GameObject[] targets;
     float distanceToNearestTarget = 100f;
     private GameObject currentTarget = null;
 
@@ -14,46 +14,9 @@ public class UnitController : MonoBehaviour {
 
     private void Awake() {
         anim = GetComponent<Animator>();
-
-        if(this.tag == "Enemy") {
-            //for each object that has the tag player, add it to the targets array
-            for( int i = 0; i < 3; i++) {
-                targets.Add(GameObject.FindGameObjectsWithTag("Ally")[i]);
-                // Debug.Log("Enemies targets[" + i + "]: " + targets[i].name);
-            }
-
-            targets.Add(GameObject.Find("Player"));
-        }
     }
 
     void Update() {
-        //if there are no targets, return
-        if(targets.Count == 0) {
-            return;
-        }
-
-        if(this.tag == "Ally") {
-            Debug.Log("Ally");
-
-            //for each object that has the tag enemy, add it to the targets array
-            for( int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++) {
-                targets.Add(GameObject.FindGameObjectsWithTag("Enemy")[i]);
-                Debug.Log("Allies targets[" + i + "]: " + targets[i].name);
-            }
-
-            // Debug.Log("Contents of target 1 for ally: " + targets[0].name);
-        }
-
-        if(this.tag == "Enemy") {
-            //for each object that has the tag player, add it to the targets array
-            for( int i = 0; i < 3; i++) {
-                Debug.Log("Size of targets: " + targets.Count);
-                targets.Add(GameObject.FindGameObjectsWithTag("Ally")[i]);
-                // Debug.Log("Enemies targets[" + i + "]: " + targets[i].name);
-            }
-
-            targets.Add(GameObject.Find("Player"));
-        }
 
         FindNearestTarget();
 

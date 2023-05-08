@@ -11,6 +11,7 @@ TagManager:
   - Ally
   - Bread
   - Coin
+  - Thorns
   layers:
   - Default
   - TransparentFX

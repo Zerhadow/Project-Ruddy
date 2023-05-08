@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private BaseUnit playerUnit;
     public GameObject gameOverText;
+    public GameObject winText;
 
     private Animator anim;
 
@@ -68,7 +69,10 @@ public class PlayerController : MonoBehaviour
 
     public void BeatGame() {
         //load title screen
-        SceneManager.LoadScene("WinScene");
+        winText.SetActive(true);
+        StartCoroutine(Wait());
+
+        SceneManager.LoadScene("TitleScreen2");
     }
 
     IEnumerator AttackAnimation() {

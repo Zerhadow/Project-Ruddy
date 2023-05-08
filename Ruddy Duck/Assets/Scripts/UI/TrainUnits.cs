@@ -54,12 +54,6 @@ public class TrainUnits : MonoBehaviour
         statSummaryObj.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void TrainRuddy()
     {
         if (playerController.gold >= player.goldCost)

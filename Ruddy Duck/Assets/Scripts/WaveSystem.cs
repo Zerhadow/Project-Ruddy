@@ -38,7 +38,7 @@ public class WaveSystem : MonoBehaviour {
 
     PlayerController player;
 
-    GameObject directionalLight;
+    public AudioSource winSound;
 
     void Awake() {
         waveCount = nextWave + 1;
@@ -90,6 +90,7 @@ public class WaveSystem : MonoBehaviour {
 
         if(nextWave + 1 > waves.Length - 1) {
             Debug.Log("Completed all waves");
+            winSound.Play();
             player.BeatGame();
         } else {
             nextWave++;
@@ -123,7 +124,7 @@ public class WaveSystem : MonoBehaviour {
         waveText.text = "Wave: " + waveCount.ToString();
 
         for(int i = 0; i < wave.enemies.Length; i++) {
-            SpawnEnemy(wave.enemy[0]);
+            SpawnEnemy(wave.enemy[0], i);
             yield return new WaitForSeconds(1/wave.rate);
         }        
 
@@ -135,11 +136,10 @@ public class WaveSystem : MonoBehaviour {
         yield break;
     }
 
-    void SpawnEnemy(Transform _enemy) {
+    void SpawnEnemy(Transform _enemy, int idx) {
         Debug.Log("Spawning Enemy: " + _enemy.name);
 
-        //spawn enemy; change from random
-        Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Transform randomSpawnPoint = spawnPoints[idx];
         Instantiate(_enemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
     }
 

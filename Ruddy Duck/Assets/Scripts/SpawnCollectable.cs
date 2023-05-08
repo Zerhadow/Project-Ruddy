@@ -9,8 +9,10 @@ public class SpawnCollectable : MonoBehaviour
     public Transform[] spawnPoints;
     public int maxBread = 3;
     public int maxCoins = 5;
+    public int maxThorns = 4;
     bool onCooldown1 = false;
     bool onCooldown2 = false;
+    bool onCooldown3 = false;
 
     void Update() {
         //create a random function to see if bread will spawn
@@ -24,6 +26,12 @@ public class SpawnCollectable : MonoBehaviour
         if (Random.Range(0, 100) < 10 && !onCooldown2) {
             //spawn bread
             if (GameObject.FindGameObjectsWithTag("Coin").Length < maxBread) {
+                Spawn();
+            }
+        }
+
+        if(!onCooldown3) {
+            if (GameObject.FindGameObjectsWithTag("Thorns").Length < maxThorns) {
                 Spawn();
             }
         }
