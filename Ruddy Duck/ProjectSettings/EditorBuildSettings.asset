@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen2.unity
     guid: 8a5563b587fc58a4abdbea68a601a633
+  - enabled: 1
+    path: Assets/Scenes/Levels/Town.unity
+    guid: 928eb7bae603ddf4bb68c20c5b9ca754
+  - enabled: 1
+    path: Assets/Scenes/Levels/Arena.unity
+    guid: f5ed22c9bdced544ea1d5f798b7f618a
   m_configObjects: {}

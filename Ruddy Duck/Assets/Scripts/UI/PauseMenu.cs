@@ -20,4 +20,8 @@ public class PauseMenu : MonoBehaviour
     public void Restart() {
         SceneManager.LoadScene("TitleScreen2");
     }
+
+    public void GoToArena() {
+        SceneManager.LoadScene("Arena");
+    }
 }
