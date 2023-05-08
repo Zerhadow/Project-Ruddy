@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WaveSpawner : MonoBehaviour {
+public class WaveSystem : MonoBehaviour {
     public enum SpawnState {SPAWNING, WAITING, COUNTING};
 
     [System.Serializable]
@@ -19,11 +19,11 @@ public class WaveSpawner : MonoBehaviour {
 
     public Wave[] waves;
     private int nextWave = 0;
-    public int highestWave = 0;
+    private int highestWave = 0;
 
-    public TMP_Text valueText;
-    public TMP_Text enemiesLeftText;
-    public int waveCount;
+    public TMP_Text waveText;
+    // public TMP_Text enemiesLeftText;
+    private int waveCount;
     int totalEnemies;
     // GameObject waveIndicator;
 
@@ -43,9 +43,8 @@ public class WaveSpawner : MonoBehaviour {
     void Awake() {
         waveCount = nextWave + 1;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
-        valueText = GameObject.Find("WaveCountText").GetComponent<TMP_Text>();
-        enemiesLeftText = GameObject.Find("EnemiesLeftText").GetComponent<TMP_Text>();
-        valueText.text = "Wave: " + waveCount.ToString();
+        // enemiesLeftText = GameObject.Find("EnemiesLeftText").GetComponent<TMP_Text>();
+        waveText.text = "Wave: " + waveCount.ToString();
         // waveIndicator = GameObject.Find("WaveIndicator"); 
     }
 
@@ -80,10 +79,8 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     void FixedUpdate() {
-
-        waveCount = nextWave + 1;
         // Debug.Log("Enemies left: " + totalEnemies);
-        enemiesLeftText.text = "Enemies left: " + totalEnemies.ToString();
+        // enemiesLeftText.text = "Enemies left: " + totalEnemies.ToString();
     }
 
     void WaveCompleted() {
@@ -96,6 +93,7 @@ public class WaveSpawner : MonoBehaviour {
             player.BeatGame();
         } else {
             nextWave++;
+            waveCount = nextWave + 1;
             if(nextWave > highestWave)
                 highestWave = nextWave;
         }
@@ -122,7 +120,7 @@ public class WaveSpawner : MonoBehaviour {
 
         // player.waveIndicator.SetActive(true);
 
-        valueText.text = "Wave: " + waveCount.ToString();
+        waveText.text = "Wave: " + waveCount.ToString();
 
         if(wave.enemy.Length == wave.enemies.Length) {
             for(int i = 0; i < wave.enemy.Length; i++) {
@@ -135,7 +133,7 @@ public class WaveSpawner : MonoBehaviour {
             Debug.Log("Enemy and enemy count arrays are not the same length");
         }
 
-        enemiesLeftText.text = "Enemies Left: " + totalEnemies.ToString();
+        // enemiesLeftText.text = "Enemies Left: " + totalEnemies.ToString();
 
         state = SpawnState.WAITING;
         // player.waveIndicator.SetActive(false);
@@ -151,28 +149,8 @@ public class WaveSpawner : MonoBehaviour {
         Instantiate(_enemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
     }
 
-    void despawnAllEnemies() {
-        // Debug.Log("Despawning all enemies");
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(GameObject enemy in enemies) {
-            Destroy(enemy);
-        }
-    }
-
     void GetTotalEnemies() {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         totalEnemies = enemies.Length;
     }
-
-    private void OnDrawGizmos() {
-        //draw spawn points
-        Gizmos.color = Color.red;
-        foreach(Transform spawnPoint in spawnPoints) {
-            Gizmos.DrawWireSphere(spawnPoint.position, 1f);
-        }
-    }
-
-    // public void Destroy {
-    //     Destroy(gameObject);
-    // }
 }
